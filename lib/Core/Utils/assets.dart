@@ -1,0 +1,9 @@
+final rainImg='Assets/raining.png';
+final moonImg='Assets/moon.png';
+final cloudImg='Assets/cloudy.png';
+final sunImg='Assets/sunny.png';
+final thndrImg='Assets/Thunder.png';
+final windyImg='Assets/windy.png';
+final windImg='Assets/wind.png';
+final thermoImg='Assets/thermo.png';
+final humidityImg='Assets/humidity.png';

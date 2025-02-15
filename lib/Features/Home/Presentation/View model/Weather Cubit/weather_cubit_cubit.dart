@@ -1,0 +1,20 @@
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:weather/Features/Home/Data/Model/forcast_weather_model/forcast_weather_model.dart';
+import 'package:weather/Features/Home/Data/Repos/home_repo.dart';
+
+part 'weather_cubit_state.dart';
+
+class WeatherCubit extends Cubit<WeatherState> {
+  final HomeRepo homeRepo;
+  WeatherCubit(this.homeRepo) : super(WeatherInitial());
+
+  Future<void> getWeather() async {
+    emit(WeatherLoading());
+    var result = await homeRepo.getWeather();
+    result.fold((apiError) {
+      emit(WeatherFail());
+    }, (weatherModel) {
+      emit(WeatherSuccess(weatherModel: weatherModel));
+    });
+  }
+}
