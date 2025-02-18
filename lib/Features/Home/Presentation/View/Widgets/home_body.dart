@@ -13,7 +13,9 @@ class HomeBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: weatherDesigns[WeatherCondition.night]!.backGroundColor,
+      backgroundColor: weatherModel.current!.isDay == 0
+          ? weatherDesigns['Night']!.backGroundColor
+          : weatherDesigns[weatherModel.current!.condition!.text!]!.backGroundColor,
       body: SafeArea(
         child: WeatherDetailsColumn(weatherModel: weatherModel),
       ),

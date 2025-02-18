@@ -6,9 +6,14 @@ import 'package:weather/Features/Home/Presentation/View/Widgets/custom_container
 class WeatherSpecificsRow extends StatelessWidget {
   final double valueFeelsLike;
   final double valueWindSpeed;
+  final bool isDay;
   final int valueHumidity;
   const WeatherSpecificsRow({
-    super.key, required this.valueFeelsLike, required this.valueWindSpeed, required this.valueHumidity,
+    super.key,
+    required this.valueFeelsLike,
+    required this.valueWindSpeed,
+    required this.valueHumidity,
+    required this.isDay,
   });
 
   @override
@@ -19,11 +24,26 @@ class WeatherSpecificsRow extends StatelessWidget {
         padding: EdgeInsets.symmetric(horizontal: 20),
         scrollDirection: Axis.horizontal,
         children: [
-          CustomContainer(title: 'Feels like',image: thermoImg,value: '$valueFeelsLike°C',),
+          CustomContainer(
+            title: 'Feels like',
+            image: thermoImg,
+            value: '$valueFeelsLike°C',
+            isDay: isDay,
+          ),
           SizedBox(width: 10),
-          CustomContainer(title: 'Wind speed',image: windImg,value: '$valueWindSpeed km/hr',),
+          CustomContainer(
+            title: 'Wind speed',
+            image: windImg,
+            value: '$valueWindSpeed km/hr',
+            isDay: isDay,
+          ),
           SizedBox(width: 10),
-          CustomContainer(title: 'Humidity',image: humidityImg,value: '$valueHumidity%',),
+          CustomContainer(
+            title: 'Humidity',
+            image: humidityImg,
+            value: '$valueHumidity%',
+            isDay: isDay,
+          ),
         ],
       ),
     ).animate().fadeIn(delay: Duration(seconds: 1)).flip();

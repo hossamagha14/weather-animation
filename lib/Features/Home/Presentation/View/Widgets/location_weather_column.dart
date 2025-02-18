@@ -11,16 +11,21 @@ class LocationWeatherColumn extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(left: 20,right: 20,top:20),
+      padding: const EdgeInsets.only(left: 20, right: 20, top: 20),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
             spacing: 10,
             children: [
-              Text(
-                '${weatherModel.location!.country!}, ${weatherModel.location!.region!}',
-                style: Styles.text20,
+              SizedBox(
+                width: MediaQuery.of(context).size.width * 0.65,
+                child: Text(
+                  '${weatherModel.location!.country!}, ${weatherModel.location!.region!}',
+                  maxLines: 2,
+                  style: Styles.text20,
+                  overflow: TextOverflow.clip,
+                ),
               ),
               Icon(
                 Icons.location_on,

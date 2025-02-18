@@ -18,16 +18,15 @@ class WeatherDetailsColumn extends StatelessWidget {
         children: [
           LocationWeatherColumn(weatherModel: weatherModel),
           Image.asset(
-            weatherDesigns[WeatherCondition.night]!.image,
+            weatherDesigns[weatherModel.current!.condition!.text]!.image,
             width: MediaQuery.of(context).size.width * 0.5,
           ).animate().shake(duration: Duration(seconds: 1)).slideX().slideY(),
           WeatherSpecificsRow(
             valueFeelsLike: weatherModel.current!.feelslikeC!,
+            isDay: weatherModel.current!.isDay==1?true:false,
             valueWindSpeed: weatherModel.current!.windKph!,
             valueHumidity: weatherModel.current!.humidity!,
           ),
         ]);
   }
 }
-
-

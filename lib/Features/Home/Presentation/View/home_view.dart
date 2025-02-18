@@ -9,7 +9,16 @@ class HomeView extends StatelessWidget {
 
   @override
   Widget build(context) {
-    return BlocBuilder<WeatherCubit, WeatherState>(
+    return BlocConsumer<WeatherCubit, WeatherState>(
+      listener: (context, state) {
+        if (state is WeatherFail) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text(state.errMessage),
+            ),
+          );
+        }
+      },
       builder: (context, state) {
         return state is WeatherSuccess
             ? HomeBody(weatherModel: state.weatherModel)
