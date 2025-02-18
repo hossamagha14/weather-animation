@@ -26,7 +26,7 @@ class TempsAndConditionView extends StatelessWidget {
             ),
             Text(
                 '${weatherModel.forecast!.forecastday![0].day!.maxtempC!.toString()}° / ${weatherModel.forecast!.forecastday![0].day!.mintempC!.toString()}°',
-                style: Styles.text20),
+                style: Styles.text20.copyWith(color: Colors.white70)),
           ],
         ),
       ],

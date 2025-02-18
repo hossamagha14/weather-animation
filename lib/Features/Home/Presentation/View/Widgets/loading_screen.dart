@@ -17,7 +17,7 @@ class LoadingScreen extends StatelessWidget {
               begin: Alignment.topRight,
               end: Alignment.bottomLeft,
               colors: [
-            const Color.fromARGB(255, 255, 55, 55),
+            const Color.fromARGB(255, 78, 0, 126),
             sunnyBackgroundColor
           ])),
       child: Stack(

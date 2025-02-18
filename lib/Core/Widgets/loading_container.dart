@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:weather/Core/Utils/assets.dart';
 import 'package:weather/Core/Utils/colors.dart';
+import 'package:weather/Core/Utils/styles.dart';
 
 class LoadingContainer extends StatelessWidget {
   const LoadingContainer({
@@ -18,7 +19,7 @@ class LoadingContainer extends StatelessWidget {
               begin: Alignment.topRight,
               end: Alignment.bottomLeft,
               colors: [
-            const Color.fromARGB(255, 255, 55, 55),
+            const Color.fromARGB(255, 78, 0, 126),
             sunnyBackgroundColor
           ])),
       child: Stack(
@@ -62,6 +63,11 @@ class LoadingContainer extends StatelessWidget {
               begin: 2,
               end: 0,
               curve: Curves.easeIn),
+          Positioned(
+            left: 70,
+            bottom: MediaQuery.of(context).size.height * 0.25,
+            child: Text('Your Weather Application',style: Styles.text20.copyWith(color: Colors.white70),),
+          ).animate().fadeIn(delay: Duration(seconds: 3)),
         ],
       ),
     );

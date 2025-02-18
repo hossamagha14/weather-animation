@@ -18,7 +18,7 @@ class _SplashViewState extends State<SplashView>
   @override
   void initState() {
     super.initState();
-    Future.delayed(Duration(seconds: 4),()=>context.go('/homeView'));
+    Future.delayed(Duration(seconds: 5), () => context.go('/homeView'));
     controller =
         AnimationController(vsync: this, duration: Duration(seconds: 3))
           ..repeat(reverse: true);
@@ -35,6 +35,6 @@ class _SplashViewState extends State<SplashView>
 
   @override
   Widget build(BuildContext context) {
-    return SplashViewBody(animation: animation);
+    return Scaffold(body: SplashViewBody(animation: animation));
   }
 }
