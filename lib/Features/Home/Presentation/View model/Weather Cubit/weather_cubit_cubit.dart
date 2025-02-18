@@ -12,7 +12,7 @@ class WeatherCubit extends Cubit<WeatherState> {
     emit(WeatherLoading());
     var result = await homeRepo.getWeather();
     result.fold((apiError) {
-      emit(WeatherFail());
+      emit(WeatherFail(apiError.errMessage));
     }, (weatherModel) {
       emit(WeatherSuccess(weatherModel: weatherModel));
     });
