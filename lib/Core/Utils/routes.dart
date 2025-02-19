@@ -3,13 +3,16 @@ import 'package:weather/Features/Home/Presentation/View/home_view.dart';
 import 'package:weather/Features/Search/Presentation/search_view.dart';
 import 'package:weather/Features/Splash/splash_view.dart';
 
+final String homeView='/homeView';
+final String searchView='/searchView';
+
 final routes = GoRouter(routes: [
   GoRoute(
     path: '/',
     builder: (context, state) => SplashView(),
   ),
   GoRoute(
-    path: '/homeView',
+    path: homeView,
     builder: (context, state) {
       final String cityName = state.extra as String;
       return HomeView(
@@ -18,7 +21,7 @@ final routes = GoRouter(routes: [
     },
   ),
   GoRoute(
-      path: '/searchView',
+      path: searchView,
       builder: (context, state) {
         final bool isDay = state.extra as bool;
         return SearchView(isDay: isDay);

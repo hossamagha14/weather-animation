@@ -16,35 +16,32 @@ class HomeView extends StatefulWidget {
 }
 
 class _HomeViewState extends State<HomeView> {
-
   @override
   void initState() {
     super.initState();
-    
+    BlocProvider.of<WeatherCubit>(context)
+        .getWeather(widget.cityName);
   }
 
   @override
   Widget build(context) {
-    return BlocProvider(
-      create: (context) => WeatherCubit(HomeRepoImpl(ApiServices(Dio())))..getWeather(widget.cityName),
-      child: BlocConsumer<WeatherCubit, WeatherState>(
-        listener: (context, state) {
-          if (state is WeatherFail) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                content: Text(state.errMessage),
-              ),
-            );
-          }
-        },
-        builder: (context, state) {
-          return state is WeatherSuccess
-              ? HomeBody(weatherModel: state.weatherModel)
-              : state is WeatherFail
-                  ? Container()
-                  : LoadingScreen();
-        },
-      ),
+    return BlocConsumer<WeatherCubit, WeatherState>(
+      listener: (context, state) {
+        if (state is WeatherFail) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text(state.errMessage),
+            ),
+          );
+        }
+      },
+      builder: (context, state) {
+        return state is WeatherSuccess
+            ? HomeBody(weatherModel: state.weatherModel)
+            : state is WeatherFail
+                ? Container()
+                : LoadingScreen();
+      },
     );
   }
 }

@@ -18,7 +18,7 @@ class _SplashViewState extends State<SplashView>
   @override
   void initState() {
     super.initState();
-    Future.delayed(Duration(seconds: 5), () => context.go('/homeView',extra: 'new york'));
+    Future.delayed(Duration(seconds: 5), () => context.go('/homeView',extra: 'Cairo'));
     controller =
         AnimationController(vsync: this, duration: Duration(seconds: 3))
           ..repeat(reverse: true);
