@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:weather/Core/Utils/styles.dart';
 import 'package:weather/Features/Home/Data/Model/forcast_weather_model/forcast_weather_model.dart';
+import 'package:weather/Features/Home/Presentation/View/Widgets/location_row.dart';
 import 'package:weather/Features/Home/Presentation/View/Widgets/temps_and_condition_view.dart';
 
 class LocationWeatherColumn extends StatelessWidget {
@@ -15,24 +16,7 @@ class LocationWeatherColumn extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Row(
-            spacing: 10,
-            children: [
-              SizedBox(
-                width: MediaQuery.of(context).size.width * 0.65,
-                child: Text(
-                  '${weatherModel.location!.country!}, ${weatherModel.location!.region!}',
-                  maxLines: 2,
-                  style: Styles.text20,
-                  overflow: TextOverflow.clip,
-                ),
-              ),
-              Icon(
-                Icons.location_on,
-                color: Colors.white,
-              ),
-            ],
-          ),
+          LocationRow(weatherModel: weatherModel),
           TempsAndConditionView(weatherModel: weatherModel)
         ],
       )

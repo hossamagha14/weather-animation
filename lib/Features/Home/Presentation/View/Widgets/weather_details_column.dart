@@ -11,22 +11,31 @@ class WeatherDetailsColumn extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return SingleChildScrollView(
+      child: Column(
         spacing: 25,
         mainAxisAlignment: MainAxisAlignment.center,
         mainAxisSize: MainAxisSize.min,
         children: [
           LocationWeatherColumn(weatherModel: weatherModel),
           Image.asset(
-            weatherDesigns[weatherModel.current!.condition!.text]!.image,
+            weatherModel.current!.isDay == 1
+                ? weatherDesigns[weatherModel.current!.condition!.text]!.image
+                : weatherModel.current!.isDay == 0 &&
+                        weatherModel.current!.condition!.text == 'Partly cloudy'
+                    ? 'Assets/partly cloudy night.png'
+                    : weatherDesigns['Clear']!.image,
             width: MediaQuery.of(context).size.width * 0.5,
           ).animate().shake(duration: Duration(seconds: 1)).slideX().slideY(),
           WeatherSpecificsRow(
             valueFeelsLike: weatherModel.current!.feelslikeC!,
-            isDay: weatherModel.current!.isDay==1?true:false,
+            isDay: weatherModel.current!.isDay == 1 ? true : false,
             valueWindSpeed: weatherModel.current!.windKph!,
             valueHumidity: weatherModel.current!.humidity!,
           ),
-        ]);
+          SizedBox()
+        ],
+      ),
+    );
   }
 }

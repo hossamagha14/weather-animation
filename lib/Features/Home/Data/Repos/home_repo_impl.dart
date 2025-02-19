@@ -10,8 +10,8 @@ class HomeRepoImpl implements HomeRepo {
   HomeRepoImpl(this._apiServices);
 
   @override
-  Future<Either<ApiError, ForcastWeatherModel>> getWeather() async {
-    final data = await _apiServices.get('cairo');
+  Future<Either<ApiError, ForcastWeatherModel>> getWeather(String cityName) async {
+    final data = await _apiServices.get(cityName);
     final forcastWeatherModel = ForcastWeatherModel.fromJson(data);
     return right(forcastWeatherModel);
   }

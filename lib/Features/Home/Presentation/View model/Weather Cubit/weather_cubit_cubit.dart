@@ -8,9 +8,9 @@ class WeatherCubit extends Cubit<WeatherState> {
   final HomeRepo homeRepo;
   WeatherCubit(this.homeRepo) : super(WeatherInitial());
 
-  Future<void> getWeather() async {
+  Future<void> getWeather(String cityName) async {
     emit(WeatherLoading());
-    var result = await homeRepo.getWeather();
+    var result = await homeRepo.getWeather(cityName);
     result.fold((apiError) {
       emit(WeatherFail(apiError.errMessage));
     }, (weatherModel) {
