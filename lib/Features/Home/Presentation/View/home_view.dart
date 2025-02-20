@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:weather/Core/Api/api_services.dart';
 import 'package:weather/Features/Home/Data/Repos/home_repo_impl.dart';
 import 'package:weather/Features/Home/Presentation/View%20model/Weather%20Cubit/weather_cubit_cubit.dart';
+import 'package:weather/Features/Home/Presentation/View/Widgets/fail_view.dart';
 import 'package:weather/Features/Home/Presentation/View/Widgets/home_body.dart';
 import 'package:weather/Features/Home/Presentation/View/Widgets/loading_screen.dart';
 
@@ -19,8 +20,7 @@ class _HomeViewState extends State<HomeView> {
   @override
   void initState() {
     super.initState();
-    BlocProvider.of<WeatherCubit>(context)
-        .getWeather(widget.cityName);
+    BlocProvider.of<WeatherCubit>(context).getWeather(widget.cityName);
   }
 
   @override
@@ -30,8 +30,7 @@ class _HomeViewState extends State<HomeView> {
         if (state is WeatherFail) {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
-              content: Text(state.errMessage),
-            ),
+                content: Text(state.errMessage), backgroundColor: Colors.red),
           );
         }
       },
@@ -39,7 +38,11 @@ class _HomeViewState extends State<HomeView> {
         return state is WeatherSuccess
             ? HomeBody(weatherModel: state.weatherModel)
             : state is WeatherFail
-                ? Container()
+                ? FailView(
+                    errMessage: state.errMessage,
+                    function: ()=>BlocProvider.of<WeatherCubit>(context).getWeather(widget.cityName),
+                    backGroundColor: Colors.deepPurple,
+                  )
                 : LoadingScreen();
       },
     );

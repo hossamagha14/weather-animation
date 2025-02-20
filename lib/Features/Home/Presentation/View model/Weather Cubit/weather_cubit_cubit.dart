@@ -10,11 +10,13 @@ class WeatherCubit extends Cubit<WeatherState> {
 
   Future<void> getWeather(String cityName) async {
     emit(WeatherLoading());
+    print(state);
     var result = await homeRepo.getWeather(cityName);
     result.fold((apiError) {
       emit(WeatherFail(apiError.errMessage));
     }, (weatherModel) {
       emit(WeatherSuccess(weatherModel: weatherModel));
     });
+    print(state);
   }
 }

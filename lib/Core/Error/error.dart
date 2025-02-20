@@ -40,7 +40,7 @@ class ApiError extends Error {
     int? statusCode = dioError.response?.statusCode;
     if (statusCode != null) {
       if (statusCode == 400) {
-        return ApiError('Bad request. Please check your input.');
+        return ApiError('There is no city with that name. Please try check the name and try again.');
       } else if (statusCode == 401) {
         return ApiError('Invalid email or password. Please log in again.');
       } else if (statusCode == 403) {
